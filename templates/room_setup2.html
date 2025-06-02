@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Создание или вход в комнату — Wordly</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wordly: Двухпользовательская игра</h1>
+
+  <form id="joinForm" action="/game_wordly" method="get">
+    <input type="text" name="room" id="roomInput" placeholder="Введите код комнаты (например, ABC123)" required />
+    <br>
+    <button type="submit">Присоединиться к комнате</button>
+  </form>
+
+  <p>или</p>
+
+  <form id="createForm" action="/game_wordly" method="get">
+    <input type="hidden" name="room" id="generatedRoom" />
+    <button type="submit" onclick="generateRoomCode()">Создать новую комнату</button>
+  </form>
+
+  <script>
+    function generateRoomCode() {
+      const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('generatedRoom').value = code;
+    }
+  </script>
+</body>
+</html>
